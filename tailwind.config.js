@@ -8,7 +8,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: {
+        fixtooltheme: {
           "primary": "#202447",  
           "secondary": "#fab915",        
           "accent": "#37CDBE",        
