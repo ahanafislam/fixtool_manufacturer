@@ -2,6 +2,8 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import Product from './Product';
+import { BsChevronDoubleDown } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
     let products =[];
@@ -27,6 +29,12 @@ const Products = () => {
                         product={product}
                     />)
                 }
+            </div>
+            <div className="card-actions justify-center mt-8">
+                <Link to='/' className="btn btn-outline btn-primary">
+                    <span className="animate-bounce mr-2"><BsChevronDoubleDown></BsChevronDoubleDown></span>
+                    See More
+                </Link>
             </div>
         </section>
     );
