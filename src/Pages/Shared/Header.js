@@ -4,7 +4,7 @@ import { FaSignInAlt } from 'react-icons/fa';
 
 const Header = () => {
     return (
-        <header className='bg-primary'>
+        <header className='bg-primary sticky top-0 z-50'>
             <div className="navbar text-white container mx-auto lg:px-10">
                 <div className="navbar-start">
                     <div className="dropdown">
