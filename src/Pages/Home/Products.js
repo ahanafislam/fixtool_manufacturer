@@ -7,10 +7,9 @@ import { Link } from 'react-router-dom';
 
 const Products = () => {
     let products =[];
-    const { isLoading, error, data } = useQuery('repoData', () =>
-        fetch('products.json').then(res =>
-        res.json()
-        )
+    const { isLoading, error, data } = useQuery('products', () =>
+        fetch('http://localhost:5000/products')
+        .then(res =>res.json())
     )
 
     if(isLoading) {

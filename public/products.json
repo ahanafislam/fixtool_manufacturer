@@ -2,55 +2,55 @@
     {
         "_id": 1,
         "name": "15-50mm Industrial Nail Gun/Air Brad Nailer",
-        "image": "https://fixit.com.bd/wp-content/uploads/2021/11/ABN15501.jpg",
+        "image": "https://i.postimg.cc/Xqm2M2nC/ABN15501.jpg",
         "description": "If you're a professional contractor, construction worker, or have other similar jobs, you know how important it is to have the right tools for the job. You need a nail gun that will last and perform for years. You need a nail gun that will make your work easier and more efficient. The Ryobi P320 18-Gauge 3-1/2-Inch Nailer is just what you need. This industrial nail gun has a durable aluminum body that will last for years and years. It also has a sturdy magazine that can hold up to 100 nails. The Ryobi P320 18-Gauge 3-1/2-Inch Nailer is the perfect nail gun for your industrial needs.",
         "minOrder": 500,
         "availableStock": 10000,
-        "pricePerUnit": 4060
+        "pricePerUnit": 46
     },
     {
         "_id": 2,
         "name": "800W 900-3300 rpm Electric Reciprocating Saw",
-        "image": "https://fixit.com.bd/wp-content/uploads/2021/10/Ingco-Reciprocating-saw-RS8008-min.jpg",
+        "image": "https://i.postimg.cc/zDc2RfTG/Ingco-Reciprocating-saw-RS8008-min.jpg",
         "description": "This is a new, high-quality electric reciprocating saw. It has a high-torque motor and a powerful blade that can cut through any material with ease. The blades are very sharp and can cut through anything from wood to metal. It is perfect for any type of project and is lightweight and easy to use.",
         "minOrder": 500,
         "availableStock": 10000,
-        "pricePerUnit": 7950
+        "pricePerUnit": 90
     },
     {
         "_id": 3,
         "name": "1050W 16000rpm Electric Planer",
-        "image": "https://fixit.com.bd/wp-content/uploads/2021/06/75af73d7ee3670f43a7416f0b62a44e8_800x-1.jpg",
+        "image": "https://i.postimg.cc/BQPY5GCc/75af73d7ee3670f43a7416f0b62a44e8-800x-1.jpg",
         "description": "For all your trimming needs, the electric planer is the perfect tool. It’s a two-handed power tool that can help you smooth wood surfaces, reduce wood's thickness, and remove the uneven edges of your wood. You can also use it to produce precise joints for your furniture. This tool is battery-powered and can be used for up to 30 minutes before needing to be recharged. It has a power rating of 650 watts and is lightweight and easy to handle. It’s made of durable steel, with a dust port and a dust bag that collects dust and debris as you work.",
         "minOrder": 500,
         "availableStock": 10000,
-        "pricePerUnit": 6850
+        "pricePerUnit": 77
     },
     {
         "_id": 4,
         "name": "12V 20NM Lithium-Ion cordless drill Machine",
-        "image": "https://fixit.com.bd/wp-content/uploads/2021/06/CDLI12325-1.jpg",
+        "image": "https://i.postimg.cc/qvfmjZbf/CDLI12325-1.jpg",
         "description": "Cordless drills are an invaluable tool for anyone looking to do home repairs or just work on a DIY project. This Black & Decker drill is a perfect option for those looking for a quality drill that won't leave them tethered to an outlet. It's also a good option for those who are looking for a drill that is lightweight and easy to use. The cordless drill has an ergonomic design that will make it easy to hold and use for hours on end. It also has a variable speed control that will allow you to adjust the speed depending on the type of project you're working on.",
         "minOrder": 500,
         "availableStock": 10000,
-        "pricePerUnit": 5150
+        "pricePerUnit": 58
     },
     {
         "_id": 5,
         "name": "18V Cordless Jigsaw",
-        "image": "https://fixit.com.bd/wp-content/uploads/2021/06/71qIRyxtDIL-1.jpg",
+        "image": "https://i.postimg.cc/t4hBftws/71q-IRyxt-DIL-1.jpg",
         "description": "With a long cord that can get in the way, it can be a hassle to use a corded jigsaw. This cordless jigsaw is lightweight and portable, so you can use it in the most inconvenient places. It is powered by a lithium ion battery, so you can work without the hassle of a cord. This cordless jigsaw is perfect for any type of project, and is available in both 6.5 inch and 12 inch blades.",
         "minOrder": 500,
         "availableStock": 10000,
-        "pricePerUnit": 50000
+        "pricePerUnit": 568
     },
     {
         "_id": 6,
         "name": "1300W 3000RPM 180mm Polisher",
-        "image": "https://fixit.com.bd/wp-content/uploads/2021/06/71hENX5l2sL._AC_SL1500_-1.jpg",
+        "image": "https://i.postimg.cc/vmb0dxw3/71h-ENX5l2s-L-AC-SL1500-1.jpg",
         "description": "A 180mm Polisher is the perfect solution for removing scratches and defects from a variety of surfaces. This powerful, handheld polisher can be used on all types of wood, metal, or plastic. The 180mm Polisher can be used for furniture, appliances, and cars. It is safe for delicate surfaces and won't leave any swirl marks. The 180mm Polisher is lightweight and has a long cord for maximum maneuverability.",
         "minOrder": 500,
         "availableStock": 10000,
-        "pricePerUnit": 18080
+        "pricePerUnit": 205
     }
 ]

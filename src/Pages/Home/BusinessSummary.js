@@ -37,7 +37,7 @@ const BusinessSummary = () => {
             <div className="stats shadow-lg w-full stats-vertical lg:stats-horizontal justify-center mt-1">
                 <div className="stat">
                     <div>
-                        <h1 className='text-2xl font-bold text-primary uppercase'>Have any products request?</h1>
+                        <h1 className='text-2xl font-bold text-primary text-center uppercase'>Have any products request?</h1>
                         <h5 className='text-md text-secondary mt-1 mb-3 text-center'>Don't hesitate to contact us</h5>
                         <div className='text-center'>
                             <button className="btn btn-primary text-white">Request for Product</button>
