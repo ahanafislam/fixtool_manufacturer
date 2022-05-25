@@ -3,22 +3,42 @@ import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        console.log(data.email, data.password);
+        console.log(data.name, data.email, data.password);
     }
 
     return (
         <section className='container mx-auto px-3 lg:px-10'>
             <div className="hero min-h-screen">
                 <div className="hero-content">
-                    <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card w-80 max-w-sm shadow-2xl bg-base-100">
                         <h1 className='text-center font-bold text-white text-2xl p-2 bg-primary flex items-center justify-center'>
-                            <FaSignInAlt/> <span className='ml-1'>Login</span>
+                            <FaSignInAlt/> <span className='ml-1'>SignUp</span>
                         </h1>
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input
+                                type="text"
+                                placeholder="Your Full Name"
+                                className="input input-bordered"
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: 'Name is Required'
+                                    }
+                                })}
+                                />
+                                <label className="label p-0">
+                                    {errors.name?.type === 'required' && <span className="label-text-alt text-error">{errors.name.message}</span>}
+                                </label>
+                            </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -43,6 +63,7 @@ const Login = () => {
                                     {errors.email?.type === 'pattern' && <span className="label-text-alt text-error">{errors.email.message}</span>}
                                 </label>
                             </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
@@ -71,10 +92,10 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-3">
-                                <button className="btn btn-primary text-white">Login</button>
+                                <button className="btn btn-primary text-white">SignUp</button>
                             </div>
                         </form>
-                        <p className='text-center text-sm p-2'>New to Fixtool <Link className='text-success hover:text-warning' to="/signup">Create New Account</Link></p>
+                        <p className='text-center text-sm p-2'>Already have an account? <Link className='text-success hover:text-warning' to="/signup">Please Login</Link></p>
                     </div>
                 </div>
             </div>
@@ -82,4 +103,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
