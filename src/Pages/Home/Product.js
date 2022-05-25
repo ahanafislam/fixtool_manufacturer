@@ -15,7 +15,8 @@ const Product = ({product}) => {
                     <button className="btn btn-xs btn-secondary text-primary">Stock: {availableStock}</button>
                 </div>
                 <p>{description.slice(0, 100).concat('...')}</p>
-                <div className="card-actions justify-end">
+                <div className="card-actions justify-between items-center">
+                    <p className='font-bold text-primary'>Minimum Order:{minOrder}</p>
                     <button className="btn text-white btn-primary">Order Now</button>
                 </div>
             </div>

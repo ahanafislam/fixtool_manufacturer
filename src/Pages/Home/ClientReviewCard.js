@@ -14,7 +14,7 @@ const ClientReviewCard = ({review}) => {
                     <p>{name}</p>
                     <div className="text-secondary">{rating} STAR</div>
                 </h2>
-                <p>{comment}</p>
+                <p>{comment.slice(0, 150).concat('...')}</p>
             </div>
         </div>
     );

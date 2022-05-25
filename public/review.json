@@ -4,20 +4,27 @@
         "name": "Jhon Dow",
         "image": "https://randomuser.me/api/portraits/men/6.jpg",
         "rating": 5,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, exercitationem adipisci? Quisquam labore culpa vitae esse quaerat sint nulla possimus, fuga, praesentium, at aperiam illo accusantium molestias rem ut quo."
+        "comment": "Very good customer service from Fixtool.I had a faulty drill which was being repaired for the second time since purchase, Dewalt have now given me an upgraded new drill as a replacement. Good communication and very short call waiting time."
     },
     {
         "_id": 2,
         "name": "Will Smith",
         "image": "https://randomuser.me/api/portraits/men/46.jpg",
         "rating": 5,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, exercitationem adipisci? Quisquam labore culpa vitae esse quaerat sint nulla possimus, fuga, praesentium, at aperiam illo accusantium molestias rem ut quo."
+        "comment": "Excellent range of robust and cost effective cordless power tools, especially the XR range. Fantastic choice of accessories and by far the best toolbox stacking system for tidy easy organisation of tools (tstak)"
     },
     {
         "_id": 3,
         "name": "Jarin Khan",
         "image": "https://randomuser.me/api/portraits/women/13.jpg",
         "rating": 5,
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, exercitationem adipisci? Quisquam labore culpa vitae esse quaerat sint nulla possimus, fuga, praesentium, at aperiam illo accusantium molestias rem ut quo."
+        "comment": "OMG! I bought a Fixtool cordless drill DE9071 18 years ago. Used it a lot for 8 years then moved onto a narrow boat. It was packed away for 10 years and I've just got it out again and blow me, it works like a dream. The original batteries charged perfectly. What an amazing product!"
+    },
+    {
+        "_id": 4,
+        "name": "David Smith",
+        "image": "https://randomuser.me/api/portraits/men/20.jpg",
+        "rating": 5,
+        "comment": "I am a normal guy who likes DIY. So when it came time to buy some tools i bought DeWalt ones as i thought i would buy them for life. As i bought the tools I didnt register them for warranty as I didnt think i would ever need to as they were Dewalt. 30 months after buying the tools, one drill got jammed in hammer position. I called Dewalt and asked what they could do. I explained i only used the drill about 4 times."
     }
 ]
