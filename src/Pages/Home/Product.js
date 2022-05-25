@@ -6,7 +6,7 @@ const Product = ({product}) => {
     return (
         <div className="card card-compact shadow-lg mx-auto relative">
             <figure><img src={image} alt="product-pic"/></figure>
-            <p className="bg-secondary bg-opacity-60 py-1 font-medium text-center absolute top-8 right-0 w-32">
+            <p className="bg-secondary bg-opacity-60 py-1 font-medium text-center absolute top-8 right-0 w-32 text-lg">
                 $ {pricePerUnit} Per-unit
             </p>
             <div className="card-body">

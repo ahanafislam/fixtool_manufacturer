@@ -9,7 +9,7 @@ const ClientReviews = () => {
     let userReview =[];
     const items = [];
     const { isLoading, error, data } = useQuery('review', () =>
-        fetch('review.json')
+        fetch('http://localhost:5000/review')
         .then(res =>res.json())
     )
 
