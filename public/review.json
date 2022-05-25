@@ -1,0 +1,23 @@
+[
+    {
+        "_id": 1,
+        "name": "Jhon Dow",
+        "image": "https://randomuser.me/api/portraits/men/6.jpg",
+        "rating": 5,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, exercitationem adipisci? Quisquam labore culpa vitae esse quaerat sint nulla possimus, fuga, praesentium, at aperiam illo accusantium molestias rem ut quo."
+    },
+    {
+        "_id": 2,
+        "name": "Will Smith",
+        "image": "https://randomuser.me/api/portraits/men/46.jpg",
+        "rating": 5,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, exercitationem adipisci? Quisquam labore culpa vitae esse quaerat sint nulla possimus, fuga, praesentium, at aperiam illo accusantium molestias rem ut quo."
+    },
+    {
+        "_id": 3,
+        "name": "Jarin Khan",
+        "image": "https://randomuser.me/api/portraits/women/13.jpg",
+        "rating": 5,
+        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, exercitationem adipisci? Quisquam labore culpa vitae esse quaerat sint nulla possimus, fuga, praesentium, at aperiam illo accusantium molestias rem ut quo."
+    }
+]
