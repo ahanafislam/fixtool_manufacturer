@@ -15,16 +15,16 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth, {sendEmailVerification: true});
 
-    let signInError;
+    let signUpError;
 
     if (loading || updating) {
         return <Loading></Loading>
     }
 
     if (error || updateError) {
-        signInError = <p className='text-error text-sm'>{error?.message || updateError?.message}</p>
+        signUpError = <p className='text-error text-sm'>{error?.message || updateError?.message}</p>
     }
 
     const onSubmit = async data => {
@@ -42,7 +42,7 @@ const SignUp = () => {
                             <FaSignInAlt/> <span className='ml-1'>SignUp</span>
                         </h1>
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2 pt-2">
-                            {signInError}
+                            {signUpError}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>

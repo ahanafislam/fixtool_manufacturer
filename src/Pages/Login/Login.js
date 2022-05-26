@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    let signInError;
+
+    useEffect( () =>{
+        user && console.log("Welcome");
+    }, [user])
+
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    if(error){
+        signInError= <p className='text-error text-sm'>{error?.message}</p>
+    }
 
     const onSubmit = data => {
-        console.log(data.email, data.password);
+        signInWithEmailAndPassword(data.email, data.password);
     }
 
     return (
@@ -20,6 +43,7 @@ const Login = () => {
                             <FaSignInAlt/> <span className='ml-1'>Login</span>
                         </h1>
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2 pt-2">
+                            {signInError}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
