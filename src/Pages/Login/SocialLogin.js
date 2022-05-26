@@ -15,6 +15,10 @@ const SocialLogin = () => {
         return <Loading></Loading>
     }
 
+    if(googleError) {
+        console.log(googleError?.message);
+    }
+
     return (
     <>  
         <div className="flex flex-col w-full px-4 border-opacity-50">

@@ -1,14 +1,36 @@
 import React from 'react';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 import SocialLogin from './SocialLogin';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const onSubmit = data => {
-        console.log(data.name, data.email, data.password);
+    let signInError;
+
+    if (loading || updating) {
+        return <Loading></Loading>
+    }
+
+    if (error || updateError) {
+        signInError = <p className='text-error text-sm'>{error?.message || updateError?.message}</p>
+    }
+
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
+        console.log('User Created');
     }
 
     return (
@@ -20,6 +42,7 @@ const SignUp = () => {
                             <FaSignInAlt/> <span className='ml-1'>SignUp</span>
                         </h1>
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2 pt-2">
+                            {signInError}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>

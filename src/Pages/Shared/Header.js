@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaSignInAlt } from 'react-icons/fa';
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+    const [user] = useAuthState(auth);
+
+    const logout = () => {
+        signOut(auth);
+    };
+
     return (
         <header className='bg-primary sticky top-0 z-50'>
             <div className="navbar text-white container mx-auto lg:px-10">
@@ -27,10 +36,17 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link
-                        to='/login'
-                        className="btn btn-sm btn-secondary text-primary"
-                    ><FaSignInAlt className='mr-1'/> Login</Link>
+                    {
+                        user 
+                        ?
+                        <button onClick={logout} className="btn btn-sm btn-secondary text-primary">
+                            <FaSignOutAlt className='mr-1'/> Logout
+                        </button>
+                        :
+                        <Link to='/login' className="btn btn-sm btn-secondary text-primary">
+                            <FaSignInAlt className='mr-1'/> Login
+                        </Link>
+                    }
                 </div>
             </div>
         </header>
