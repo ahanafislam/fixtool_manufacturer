@@ -8,7 +8,7 @@ const BannerContent = ({heroBackground, heroTitle, heroText}) => {
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold text-secondary">{heroTitle}</h1>
                     <p className="mb-5">{heroText}</p>
-                    <button className="btn btn-primary">Let Explore</button>
+                    <button className="btn btn-primary">Let's Explore</button>
                 </div>
             </div>
         </div>
