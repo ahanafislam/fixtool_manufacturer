@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import SocialLogin from './SocialLogin';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -14,11 +15,11 @@ const SignUp = () => {
         <section className='container mx-auto px-3 lg:px-10'>
             <div className="hero min-h-screen">
                 <div className="hero-content">
-                    <div className="card w-80 max-w-sm shadow-2xl bg-base-100">
+                    <div className="card w-[21rem] max-w-sm shadow-2xl bg-base-100">
                         <h1 className='text-center font-bold text-white text-2xl p-2 bg-primary flex items-center justify-center'>
                             <FaSignInAlt/> <span className='ml-1'>SignUp</span>
                         </h1>
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2 pt-2">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -95,7 +96,8 @@ const SignUp = () => {
                                 <button className="btn btn-primary text-white">SignUp</button>
                             </div>
                         </form>
-                        <p className='text-center text-sm p-2'>Already have an account? <Link className='text-success hover:text-warning' to="/signup">Please Login</Link></p>
+                        <p className='text-center text-sm p-2'>Already have an account? <Link className='text-success hover:text-warning' to="/login">Please Login</Link></p>
+                        <SocialLogin/>
                     </div>
                 </div>
             </div>
