@@ -47,7 +47,7 @@ const Login = () => {
             toast.success("Please Check Your Email.");
         }
         else {
-            toast.warning("Please Provide email id");
+            toast.error("Please Provide email id");
         }
     }
 

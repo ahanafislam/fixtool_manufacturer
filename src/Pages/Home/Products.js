@@ -21,7 +21,7 @@ const Products = () => {
     return (
         <section className='container mx-auto px-3 lg:px-10 mt-10'>
             <h1 className='text-center font-bold text-primary text-4xl'>Our Products</h1>
-            <div className='grid grid-col-1 md:grid-cols-3 gap-10 mt-5 mx-auto'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 mx-auto'>
                 {
                     products?.map(product => <Product
                         key={product._id}

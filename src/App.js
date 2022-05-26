@@ -19,10 +19,10 @@ function App() {
       {/* Start Routing */}
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="about" element={<About/>}/>
-        <Route path="login" element={<Login/>}/>
-        <Route path="signup" element={<Signup/>}/>
-        <Route path='purchase' element={
+        <Route path="/about" element={<About/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path='/purchase/:product_id' element={
           <RequireAuth>
             <PurchaseProduct/>
           </RequireAuth>
