@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import auth from '../../firebase.init';
@@ -32,6 +32,11 @@ const Header = () => {
                     <ul className="menu menu-horizontal p-0">
                         <li><Link className='hover:text-secondary' to="/">Home</Link></li>
                         <li><Link className='hover:text-secondary' to="/">Blog</Link></li>
+                        {
+                            user
+                            &&
+                            <li><Link className='hover:text-secondary' to="/">Dashboard</Link></li>
+                        }
                         <li><Link className='hover:text-secondary' to="/about">About</Link></li>
                     </ul>
                 </div>
@@ -39,9 +44,12 @@ const Header = () => {
                     {
                         user 
                         ?
-                        <button onClick={logout} className="btn btn-sm btn-secondary text-primary">
-                            <FaSignOutAlt className='mr-1'/> Logout
-                        </button>
+                        <div className='flex items-center'>
+                             <p className='font-bold mr-2'>{user?.displayName}</p>
+                            <button onClick={logout} className="btn btn-xs btn-secondary text-primary">
+                                <FaSignOutAlt className='mr-1'/> Logout
+                            </button>
+                        </div>
                         :
                         <Link to='/login' className="btn btn-sm btn-secondary text-primary">
                             <FaSignInAlt className='mr-1'/> Login

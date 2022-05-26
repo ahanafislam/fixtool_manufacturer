@@ -9,6 +9,8 @@ import Footer from './Pages/Shared/Footer';
 import Header from './Pages/Shared/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PurchaseProduct from './Pages/Products/PurchaseProduct';
+import RequireAuth from './Pages/Login/RequireAuth';
 
 function App() {
   return (
@@ -20,6 +22,11 @@ function App() {
         <Route path="about" element={<About/>}/>
         <Route path="login" element={<Login/>}/>
         <Route path="signup" element={<Signup/>}/>
+        <Route path='purchase' element={
+          <RequireAuth>
+            <PurchaseProduct/>
+          </RequireAuth>
+        }/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
       {/* End Routing */}

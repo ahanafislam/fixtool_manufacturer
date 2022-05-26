@@ -3,20 +3,26 @@ import { useSignInWithGoogle} from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { FcGoogle } from 'react-icons/fc';
 import Loading from '../Shared/Loading';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
-    useEffect(() => {
-        googleUser && console.log("you are login");
-    },[googleUser]);
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    useEffect( () =>{
+        googleUser && navigate(from, { replace: true });
+    }, [googleUser, navigate, from])
 
     if(googleLoading){
         return <Loading></Loading>
     }
 
     if(googleError) {
-        console.log(googleError?.message);
+        toast.error(googleError?.message);
     }
 
     return (

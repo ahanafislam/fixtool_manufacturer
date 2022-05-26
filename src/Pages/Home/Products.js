@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Products = () => {
     let products =[];
     const { isLoading, error, data } = useQuery('products', () =>
-        fetch('http://localhost:5000/products')
+        fetch('https://fixtool.herokuapp.com/products')
         .then(res =>res.json())
     )
 

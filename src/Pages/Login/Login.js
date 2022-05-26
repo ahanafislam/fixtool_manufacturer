@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
@@ -19,10 +19,13 @@ const Login = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     let signInError;
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     useEffect( () =>{
-        user && console.log("Welcome");
-    }, [user])
+        user && navigate(from, { replace: true });
+    }, [user, navigate, from])
 
     if (loading || sending) {
         return <Loading></Loading>
@@ -96,8 +99,8 @@ const Login = () => {
                                             message: 'Password is Required'
                                         },
                                         minLength: {
-                                            value: 6,
-                                            message: 'Must be 6 characters or longer'
+                                            value: 8,
+                                            message: 'Password must be 8 characters or longer'
                                         }
                                     })}
                                 />

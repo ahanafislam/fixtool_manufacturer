@@ -9,7 +9,7 @@ const ClientReviews = () => {
     let userReview =[];
     const items = [];
     const { isLoading, error, data } = useQuery('review', () =>
-        fetch('http://localhost:5000/review')
+        fetch('https://fixtool.herokuapp.com/review')
         .then(res =>res.json())
     )
 
@@ -25,7 +25,7 @@ const ClientReviews = () => {
         1024: { items: 3 },
     };
 
-    userReview.forEach(review => {
+    userReview?.forEach(review => {
         items.push(<ClientReviewCard
             review={review}
         ></ClientReviewCard>)

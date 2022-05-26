@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import SocialLogin from './SocialLogin';
@@ -18,6 +18,13 @@ const SignUp = () => {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth, {sendEmailVerification: true});
 
     let signUpError;
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    useEffect( () =>{
+        user && navigate(from, { replace: true });
+    }, [user, navigate, from])
 
     if (loading || updating) {
         return <Loading></Loading>
@@ -30,7 +37,6 @@ const SignUp = () => {
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        console.log('User Created');
     }
 
     return (
@@ -101,15 +107,15 @@ const SignUp = () => {
                                             value: true,
                                             message: 'Password is Required'
                                         },
-                                        minLength: {
-                                            value: 6,
-                                            message: 'Must be 6 characters or longer'
+                                        pattern: {
+                                            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                                            message: 'Password must be minimum 8 characters, at least one letter and one number'
                                         }
                                     })}
                                 />
                                 <label className="label p-0">
                                     {errors.password?.type === 'required' && <span className="label-text-alt text-error">{errors.password.message}</span>}
-                                    {errors.password?.type === 'minLength' && <span className="label-text-alt text-error">{errors.password.message}</span>}
+                                    {errors.password?.type === 'pattern' && <span className="label-text-alt text-error">{errors.password.message}</span>}
                                 </label>
                             </div>
                             <div className="form-control mt-3">
