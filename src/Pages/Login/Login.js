@@ -3,18 +3,20 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, getValues, formState: { errors }, handleSubmit } = useForm();
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     let signInError;
 
@@ -22,7 +24,7 @@ const Login = () => {
         user && console.log("Welcome");
     }, [user])
 
-    if (loading) {
+    if (loading || sending) {
         return <Loading></Loading>
     }
 
@@ -32,6 +34,18 @@ const Login = () => {
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
+    }
+
+    const resetPassword = async () => {
+        const email = getValues('email');
+        await sendPasswordResetEmail(email);
+        
+        if(email) {
+            toast.success("Please Check Your Email.");
+        }
+        else {
+            toast.warning("Please Provide email id");
+        }
     }
 
     return (
@@ -92,11 +106,11 @@ const Login = () => {
                                     {errors.password?.type === 'minLength' && <span className="label-text-alt text-error">{errors.password.message}</span>}
                                 </label>
                                 <label className="label">
-                                    <button type='button' className="label-text-alt link link-hover">Forgot password?</button>
+                                    <button type='button' onClick={resetPassword} className="label-text-alt link link-hover">Forgot password?</button>
                                 </label>
                             </div>
                             <div className="form-control mt-3">
-                                <button className="btn btn-primary text-white">Login</button>
+                                <button type='submit' className="btn btn-primary text-white">Login</button>
                             </div>
                         </form>
                         <p className='text-center text-sm p-2'>New to Fixtool <Link className='text-success hover:text-warning' to="/signup">Create New Account</Link></p>

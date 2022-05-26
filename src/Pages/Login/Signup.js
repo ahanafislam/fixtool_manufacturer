@@ -111,12 +111,9 @@ const SignUp = () => {
                                     {errors.password?.type === 'required' && <span className="label-text-alt text-error">{errors.password.message}</span>}
                                     {errors.password?.type === 'minLength' && <span className="label-text-alt text-error">{errors.password.message}</span>}
                                 </label>
-                                <label className="label">
-                                    <button type='button' className="label-text-alt link link-hover">Forgot password?</button>
-                                </label>
                             </div>
                             <div className="form-control mt-3">
-                                <button className="btn btn-primary text-white">SignUp</button>
+                                <button type='submit' className="btn btn-primary text-white">SignUp</button>
                             </div>
                         </form>
                         <p className='text-center text-sm p-2'>Already have an account? <Link className='text-success hover:text-warning' to="/login">Please Login</Link></p>

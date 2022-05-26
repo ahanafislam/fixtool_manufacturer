@@ -7,6 +7,8 @@ import Signup from './Pages/Login/Signup';
 import NotFound from './Pages/NotFound/NotFound';
 import Footer from './Pages/Shared/Footer';
 import Header from './Pages/Shared/Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route path="*" element={<NotFound/>}/>
       </Routes>
       {/* End Routing */}
+      <ToastContainer position="top-center" autoClose={3000} theme="colored"/>
       <Footer></Footer>
     </div>
   );
