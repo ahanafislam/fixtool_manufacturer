@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const PurchaseProduct = () => {
     const {product_id} = useParams();
     const [user] = useAuthState(auth);
-    const { register, getValues, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm({mode: "onChange"});
 
     let productDetail =[];
-    const { isLoading, error, data } = useQuery('productDetail', () =>
+    const { isLoading, error, data, refetch } = useQuery('productDetail', () =>
         fetch(`https://fixtool.herokuapp.com/products/${product_id}`)
         .then(res =>res.json())
     )
@@ -37,7 +38,24 @@ const PurchaseProduct = () => {
             country: data.country
         }
 
-        console.table(order);
+        fetch('https://fixtool.herokuapp.com/order', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged) {
+                    reset();
+                    refetch();
+                    toast.success(`Your Order Is Successfully Submitted`);
+                }
+                else{
+                    console.log(data);
+                }
+            })
     }
 
 
@@ -48,16 +66,19 @@ const PurchaseProduct = () => {
                 <div className="card lg:card-side mx-auto rounded-none w-full justify-around">
                     <figure className='w-80'><img src={image} alt="product_pic"/></figure>
                     <div className="card-bod max-w-xl">
-                        <h2 className="text-primary font-bold text-2xl">{name}</h2>
+                        <h2 className="text-primary font-bold text-2xl">Product Name: {name}</h2>
                         <div className="card-actions my-1">
                             <p className="bg-secondary text-sm font-bold text-center rounded-md p-1">Price Per Unit: ${pricePerUnit}</p>
                             <p className="bg-secondary text-sm font-bold text-center rounded-md p-1">Stock: {availableStock}</p> 
                             <p className="bg-secondary text-sm font-bold text-center rounded-md p-1">Minimum Order: {minOrder}</p> 
                         </div>
-                        <p className='mt-3'>{description}</p>
+                        <p className='my-3'>{description}</p>
+                        <h2 className="text-primary font-bold text-lg">Order By</h2>
+                        <h2 className="text-primary font-medium">Name: {user.displayName}</h2>
+                        <h2 className="text-primary font-medium">Email: {user.email}</h2>
                     </div>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)} className="card max-w-2xl mx-auto shadow-xl">
+                <form onSubmit={handleSubmit(onSubmit)} className="card max-w-2xl mx-auto shadow-xl mt-5">
                         <h1 className='text-center font-bold text-white text-2xl p-1 bg-primary flex items-center justify-center'>
                             <span className='ml-1'>Place Order</span>
                         </h1>
@@ -118,6 +139,8 @@ const PurchaseProduct = () => {
                                 </label>
                                 <input
                                     type="number"
+                                    min={minOrder}
+                                    max={availableStock}
                                     className="input input-bordered"
                                     {...register("quantity", {
                                         required: {
@@ -176,8 +199,8 @@ const PurchaseProduct = () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="card-actions mt-6 justify-center">
-                            <button className="btn btn-primary">Check Out</button>
+                        <div className="card-actions mt-6 justify-center label">
+                            <button disabled = {errors.quantity} className="btn btn-primary text-white">Purchase</button>
                         </div>
                     </div>
                 </form>

@@ -23,6 +23,11 @@ const Header = () => {
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52">
                             <li><Link className='hover:text-secondary' to="/">Home</Link></li>
                             <li><Link className='hover:text-secondary' to="/">Blog</Link></li>
+                            {
+                                user
+                                &&
+                                <li><Link className='hover:text-secondary' to="/dashboard">Dashboard</Link></li>
+                            }
                             <li><Link className='hover:text-secondary' to="/about">About</Link></li>
                         </ul>
                     </div>
@@ -35,7 +40,7 @@ const Header = () => {
                         {
                             user
                             &&
-                            <li><Link className='hover:text-secondary' to="/">Dashboard</Link></li>
+                            <li><Link className='hover:text-secondary' to="/dashboard">Dashboard</Link></li>
                         }
                         <li><Link className='hover:text-secondary' to="/about">About</Link></li>
                     </ul>
