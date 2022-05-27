@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyOrderRow = ({order}) => {
+const MyOrderRow = ({order,refetch,setDeletingOrder}) => {
     const {
             _id,
             image,
@@ -26,9 +26,12 @@ const MyOrderRow = ({order}) => {
             <td>{order_quantity}</td>
             <td>${total}</td>
             <td>
-                <button className='btn btn-xs btn-error text-white'>
+                <label
+                    onClick={() => setDeletingOrder(order)}
+                    htmlFor="cancel-confirm-modal"
+                    className="btn btn-xs btn-error text-white">
                     Cancel
-                </button>
+                </label>
                 <br/>
                 <button className='btn btn-xs btn-info text-white'>
                     Payment
