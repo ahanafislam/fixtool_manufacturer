@@ -1,36 +1,49 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
+import MyOrderRow from './MyOrderRow';
 
 const MyOrders = () => {
+    const [user] = useAuthState(auth);
+    
+    let myOrders =[];
+
+    const { isLoading, error, data } = useQuery('myOrders', async () =>{
+            const url = `http://localhost:5000/my_order?email=${user.email}`
+            const orderList = await (await fetch(url)).json()
+            return orderList;
+        }
+    )
+
+    if(isLoading) {
+        return <Loading/>
+    }
+
+    myOrders = data;
+
     return (
-        <section>
+        <section className='px-auto'>
             <h3 className='text-center font-bold text-primary text-2xl mb-3'>Order List</h3>
-            <div class="overflow-x-auto">
-                <table class="table">
+            <div className="overflow-x-auto">
+                <table className="table mx-auto w-full">
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Quantity</th>
-                            <th>Total Price</th>
-                            <th>Action</th>
+                            <th className='bg-primary text-white'>Image</th>
+                            <th className='bg-primary text-white'>Name</th>
+                            <th className='bg-primary text-white'>Quantity</th>
+                            <th className='bg-primary text-white'>Total Price</th>
+                            <th className='bg-primary text-white'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src="https://i.postimg.cc/Xqm2M2nC/ABN15501.jpg" alt="product_pic" />
-                                </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>15-50mm Industrial Nail Gun/Air Brad Nailer</td>
-                        <td>1000</td>
-                        <td>$5000</td>
-                        <td>Delate</td>
-                    </tr>
+                        {
+                            myOrders?.map(order => <MyOrderRow
+                                key={order._id}
+                                order={order}
+                            />)
+                        }
                     </tbody>
                 </table>
             </div>

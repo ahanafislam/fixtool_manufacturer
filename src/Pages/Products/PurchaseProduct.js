@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
@@ -11,6 +11,7 @@ const PurchaseProduct = () => {
     const {product_id} = useParams();
     const [user] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm({mode: "onChange"});
+    const navigate = useNavigate();
 
     let productDetail =[];
     const { isLoading, error, data, refetch } = useQuery('productDetail', () =>
@@ -30,11 +31,13 @@ const PurchaseProduct = () => {
         const order = {
             products_id: _id,
             product_name: name,
+            image: image,
             user_name: user.displayName,
             user_email: user.email,
             order_quantity: data.quantity,
             phone: data.phone,
             address: data.address,
+            total: pricePerUnit * data.quantity,
             country: data.country
         }
 
@@ -50,6 +53,7 @@ const PurchaseProduct = () => {
                 if(data.acknowledged) {
                     reset();
                     refetch();
+                    navigate('/dashboard')
                     toast.success(`Your Order Is Successfully Submitted`);
                 }
                 else{
