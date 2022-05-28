@@ -2,7 +2,7 @@ import React from 'react';
 import qualityPic from '../../assets/Images/qualityPic.jpg';
 
 const Certification = () => {
-    return (
+    return (    
         <section className='container mx-auto px-3 lg:px-10 mt-16 card shadow-lg'>
             <div className="hero min-h-full bg-base-100 my-12">
             <div className="hero-content flex-col lg:flex-row">

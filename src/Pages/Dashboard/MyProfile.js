@@ -1,13 +1,57 @@
-import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import React, { useState } from 'react';
+import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const MyProfile = () => {
-    const { register, formState: { errors }, handleSubmit, reset } = useForm({mode: "onChange"});
+    const { register, formState: { errors }, handleSubmit } = useForm({mode: "onChange"});
     const [user] = useAuthState(auth);
+    const [submitting, setSubmitting] = useState(false);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    // const { isLoading, error, data:userProfile } = useQuery('userProfile', async() => {
+    //     const url = `http://localhost:5000/user/profile/${user.email}`;
+    //     const userPro = await (await fetch(url)).json()
+
+    //     return userPro;
+    // })
+
+    if(submitting || updating) {
+        <Loading/>
+    }
+    
     const onSubmit = data => {
-        console.log(data);
+        setSubmitting(true);
+
+        fetch(`http://localhost:5000/user/update/${user.email}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => {
+                if(res.status === 403){
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                    toast.error('Failed to Make Update');
+                }
+                return res.json()
+            })
+            .then(result => {
+                if (result.modifiedCount > 0) {
+                    updateProfile({ displayName: data.name });
+                    toast.success(`Profile updated Successfully`);
+                }
+                else {
+                    toast.info('Nothing have to update.');
+                }
+                setSubmitting(false);
+            })
     }
 
     return (
@@ -24,10 +68,9 @@ const MyProfile = () => {
                             </label>
                             <input
                                 type="text"
-                                value={user.displayName}
                                 className="input input-bordered"
                                 {...register("name", {
-                                    value: user.name
+                                    value: user.displayName
                                 })}
                             />
                         </div>
@@ -58,7 +101,7 @@ const MyProfile = () => {
                                     required: {
                                         value: true,
                                         message: 'Phone Number is Required'
-                                    }
+                                    },
                                 })}
                             />
                             <label className="label p-0">
@@ -93,7 +136,7 @@ const MyProfile = () => {
                                     required: {
                                         value: true,
                                         message: 'Enter Address'
-                                    }
+                                    },
                                 })}
                             />
                             <label className="label p-0">
@@ -113,7 +156,7 @@ const MyProfile = () => {
                                     required: {
                                         value: true,
                                         message: 'Country name is Required'
-                                    }
+                                    },
                                 })}
                             />
                             <label className="label p-0">
