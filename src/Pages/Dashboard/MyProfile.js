@@ -15,7 +15,7 @@ const MyProfile = () => {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const { isLoading, error, data:userProfile, refetch } = useQuery('userProfile', async() => {
-        const url = `http://localhost:5000/user/profile/${user.email}`;
+        const url = `https://fixtool.herokuapp.com/user/profile/${user.email}`;
         const userPro = await (await fetch(url)).json()
 
         return userPro[0];
@@ -28,7 +28,7 @@ const MyProfile = () => {
     const onSubmit = data => {
         setSubmitting(true);
 
-        fetch(`http://localhost:5000/user/update/${user.email}`, {
+        fetch(`https://fixtool.herokuapp.com/user/update/${user.email}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
