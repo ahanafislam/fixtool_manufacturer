@@ -12,6 +12,7 @@ const PurchaseProduct = () => {
     const [user] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm({mode: "onChange"});
     const navigate = useNavigate();
+    const [submitting, setSubmitting] = useState(false);
 
     let productDetail =[];
     const { isLoading, error, data, refetch } = useQuery('productDetail', () =>
@@ -19,7 +20,7 @@ const PurchaseProduct = () => {
         .then(res =>res.json())
     )
 
-    if(isLoading) {
+    if(isLoading || submitting) {
         return <Loading/>
     }
 
@@ -28,6 +29,8 @@ const PurchaseProduct = () => {
     const {_id, pricePerUnit, name, minOrder, image, description, availableStock} = productDetail;
 
     const onSubmit = data => {
+        setSubmitting(true);
+
         const order = {
             products_id: _id,
             product_name: name,
@@ -59,6 +62,7 @@ const PurchaseProduct = () => {
                 else{
                     console.log(data);
                 }
+                setSubmitting(false);
             })
     }
 

@@ -5,7 +5,7 @@ import { CgDanger } from 'react-icons/cg';
 const CancelOrderModal = ({deletingOrder, refetch, setDeletingOrder}) => {
     const {_id} = deletingOrder;
     const handleCancel = () => {
-        fetch(`http://localhost:5000/order/${_id}`, {
+        fetch(`https://fixtool.herokuapp.com/order/${_id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

@@ -5,6 +5,7 @@ import { FcGoogle } from 'react-icons/fc';
 import Loading from '../Shared/Loading';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useToken from '../../hooks/useToken';
 
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -13,9 +14,11 @@ const SocialLogin = () => {
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
+    const [token] = useToken(googleUser);
+
     useEffect( () =>{
-        googleUser && navigate(from, { replace: true });
-    }, [googleUser, navigate, from])
+        token && navigate(from, { replace: true });
+    }, [token, navigate, from])
 
     if(googleLoading){
         return <Loading></Loading>

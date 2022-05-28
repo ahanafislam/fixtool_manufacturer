@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import CancelOrderModal from './CancelOrderModal';
@@ -9,12 +11,24 @@ import MyOrderRow from './MyOrderRow';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deletingOrder, setDeletingOrder] = useState(null);
+    const navigate = useNavigate();
     
     let myOrders =[];
 
     const { isLoading, error, data, refetch } = useQuery('myOrders', async () =>{
-            const url = `http://localhost:5000/my_order?email=${user.email}`
-            const orderList = await (await fetch(url)).json()
+            const url = `https://fixtool.herokuapp.com/my_order?email=${user.email}`;
+            const options = {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            }
+            const orderList = await (await fetch(url, options)).json()
+            
+            if (orderList.status === 401 || orderList.status === 403) {
+                signOut(auth);
+                localStorage.removeItem('accessToken');
+                navigate('/');
+            }
             return orderList;
         }
     )

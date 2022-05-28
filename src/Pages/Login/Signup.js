@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FaSignInAlt } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 import Loading from '../Shared/Loading';
 import SocialLogin from './SocialLogin';
 
@@ -22,9 +23,11 @@ const SignUp = () => {
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
+    const [token] = useToken(user);
+
     useEffect( () =>{
-        user && navigate(from, { replace: true });
-    }, [user, navigate, from])
+        token && navigate(from, { replace: true });
+    }, [token, navigate, from])
 
     if (loading || updating) {
         return <Loading></Loading>

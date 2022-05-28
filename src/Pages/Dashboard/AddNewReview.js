@@ -31,12 +31,12 @@ const AddNewReview = () => {
             .then(data => {
                 if(data.acknowledged) {
                     reset();
-                    setSubmitting(false);
                     toast.success(`Your Review Is Successfully Submitted`);
                 }
                 else{
                     console.log(data);
                 }
+                setSubmitting(false);
             })
     }
 
