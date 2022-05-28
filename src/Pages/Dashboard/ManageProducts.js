@@ -1,6 +1,5 @@
 import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -9,7 +8,6 @@ import DelateProductModal from './DelateProductModal';
 import ManageProductRow from './ManageProductRow';
 
 const ManageProducts = () => {
-    const [user] = useAuthState(auth);
     const [deletingProduct, setDeletingProduct] = useState(null);
     const navigate = useNavigate();
     

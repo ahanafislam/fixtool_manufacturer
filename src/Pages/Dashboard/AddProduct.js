@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm({mode: "onChange"});
     const [submitting, setSubmitting] = useState(false);
+
+    const navigate = useNavigate();
 
     const onSubmit = data => {
         setSubmitting(true)
@@ -23,6 +26,7 @@ const AddProduct = () => {
             .then(data => {
                 if(data.acknowledged) {
                     reset();
+                    navigate('/');
                     toast.success(`Your Product Is Successfully Added`);
                 }
                 else{

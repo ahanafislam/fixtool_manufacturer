@@ -60,7 +60,7 @@ const MyProfile = () => {
     return (
             <div>
                 <div className="card max-w-2xl mx-auto shadow-xl mt-6 bg-base-100">
-                <h1 className='text-center font-bold text-white text-2xl p-1 bg-primary flex items-center justify-center'>User Profile</h1>
+                <h1 className='text-center font-bold text-white text-2xl p-1 bg-primary flex items-center justify-center'>Profile Information</h1>
                 {/* <div className="avatar justify-center">
                     <div className="w-16 mt-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                         <img src={image} alt="client-pic" />
