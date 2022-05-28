@@ -15,6 +15,10 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import AddNewReview from './Pages/Dashboard/AddNewReview';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
+import RequireAdmin from './Pages/Login/RequireAdmin';
+import RequireUser from './Pages/Login/RequireUser';
+import AddProduct from './Pages/Dashboard/AddProduct';
 
 function App() {
   return (
@@ -32,9 +36,11 @@ function App() {
           </RequireAuth>
         }/>
         <Route path="/dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} >
-          <Route index element={<MyOrders/>}/>
-          <Route path='profile' element={<MyProfile/>}/>
-          <Route path='addReview' element={<AddNewReview/>}/>
+          <Route index element={<MyProfile/>}/>
+          <Route path='myOrder' element={<RequireUser><MyOrders/></RequireUser>}/>
+          <Route path='addReview' element={<RequireUser><AddNewReview/></RequireUser>}/>
+          <Route path='manageProduct' element={<RequireAdmin><ManageProducts/></RequireAdmin>}/>
+          <Route path='addProduct' element={<RequireAdmin><AddProduct/></RequireAdmin>}/>
         </Route>
         <Route path="*" element={<NotFound/>}/>
       </Routes>

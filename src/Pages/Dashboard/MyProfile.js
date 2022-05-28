@@ -67,7 +67,7 @@ const MyProfile = () => {
                     </div>
                 </div> */}
                 <div className="card-body">
-                    <h2 className="text-lg"><span className='font-bold mr-2'>Name:</span> {userProfile?.name}</h2>
+                    <h2 className="text-lg"><span className='font-bold mr-2'>Name:</span> {user.displayName}</h2>
                     <h2 className="text-lg"><span className='font-bold mr-2'>Email:</span> {userProfile?.email}</h2>
                     <h2 className="text-lg"><span className='font-bold mr-2'>LinkedIn:</span> <Link className='text-info' to={`${userProfile?.linkedIn}`}>{userProfile?.linkedIn}</Link></h2>
                     <h2 className="text-lg"><span className='font-bold mr-2'>Phone:</span> {userProfile?.phone}</h2>
