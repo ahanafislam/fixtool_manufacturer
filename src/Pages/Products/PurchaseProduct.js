@@ -56,7 +56,7 @@ const PurchaseProduct = () => {
                 if(data.acknowledged) {
                     reset();
                     refetch();
-                    navigate('/dashboard')
+                    navigate('/dashboard/myOrder')
                     toast.success(`Your Order Is Successfully Submitted`);
                 }
                 else{

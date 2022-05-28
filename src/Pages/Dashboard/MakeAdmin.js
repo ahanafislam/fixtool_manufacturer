@@ -30,7 +30,7 @@ const MakeAdmin = () => {
         }
     )
 
-    if(isLoading) {
+    if(isLoading || isMaking) {
         return <Loading/>
     }
 

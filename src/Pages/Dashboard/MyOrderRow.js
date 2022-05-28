@@ -7,8 +7,7 @@ const MyOrderRow = ({order,refetch,setDeletingOrder}) => {
             product_name,
             order_quantity,
             total,
-            address,
-            country
+            transaction_id
         } = order;
 
     return (
@@ -26,16 +25,24 @@ const MyOrderRow = ({order,refetch,setDeletingOrder}) => {
             <td>{order_quantity}</td>
             <td>${total}</td>
             <td>
+                {
+                    transaction_id
+                    ?
+                    transaction_id
+                    :
+                    <button className='btn btn-xs btn-info text-white'>
+                        Payment
+                    </button>
+                }
+            </td>
+            <td>
                 <label
+                    disabled = {transaction_id}
                     onClick={() => setDeletingOrder(order)}
                     htmlFor="cancel-confirm-modal"
                     className="btn btn-xs btn-error text-white">
                     Cancel
                 </label>
-                <br/>
-                <button className='btn btn-xs btn-info text-white'>
-                    Payment
-                </button>
             </td>
         </tr>
     );
