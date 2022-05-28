@@ -2,6 +2,8 @@ import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
@@ -12,14 +14,14 @@ const MyProfile = () => {
     const [submitting, setSubmitting] = useState(false);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    // const { isLoading, error, data:userProfile } = useQuery('userProfile', async() => {
-    //     const url = `http://localhost:5000/user/profile/${user.email}`;
-    //     const userPro = await (await fetch(url)).json()
+    const { isLoading, error, data:userProfile, refetch } = useQuery('userProfile', async() => {
+        const url = `http://localhost:5000/user/profile/${user.email}`;
+        const userPro = await (await fetch(url)).json()
 
-    //     return userPro;
-    // })
+        return userPro[0];
+    })
 
-    if(submitting || updating) {
+    if(isLoading || submitting || updating) {
         <Loading/>
     }
     
@@ -45,6 +47,7 @@ const MyProfile = () => {
             .then(result => {
                 if (result.modifiedCount > 0) {
                     updateProfile({ displayName: data.name });
+                    refetch();
                     toast.success(`Profile updated Successfully`);
                 }
                 else {
@@ -55,8 +58,24 @@ const MyProfile = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit(onSubmit)} className="card max-w-2xl mx-auto shadow-xl mt-5 bg-base-100">
+            <div>
+                <div className="card max-w-2xl mx-auto shadow-xl mt-6 bg-base-100">
+                <h1 className='text-center font-bold text-white text-2xl p-1 bg-primary flex items-center justify-center'>User Profile</h1>
+                {/* <div className="avatar justify-center">
+                    <div className="w-16 mt-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <img src={image} alt="client-pic" />
+                    </div>
+                </div> */}
+                <div className="card-body">
+                    <h2 className="text-lg"><span className='font-bold mr-2'>Name:</span> {userProfile?.name}</h2>
+                    <h2 className="text-lg"><span className='font-bold mr-2'>Email:</span> {userProfile?.email}</h2>
+                    <h2 className="text-lg"><span className='font-bold mr-2'>LinkedIn:</span> <Link className='text-info' to={`${userProfile?.linkedIn}`}>{userProfile?.linkedIn}</Link></h2>
+                    <h2 className="text-lg"><span className='font-bold mr-2'>Phone:</span> {userProfile?.phone}</h2>
+                    <h2 className="text-lg"><span className='font-bold mr-2'>Address:</span> {userProfile?.address}</h2>
+                    <h2 className="text-lg"><span className='font-bold mr-2'>Education:</span> {userProfile?.education}</h2>
+                </div>
+            </div>
+            <form onSubmit={handleSubmit(onSubmit)} className="card max-w-2xl mx-auto shadow-xl my-5 bg-base-100">
                 <h1 className='text-center font-bold text-white text-2xl p-1 bg-primary flex items-center justify-center'>
                     <span className='ml-1'>Update Profile</span>
                 </h1>
@@ -146,21 +165,21 @@ const MyProfile = () => {
 
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Country</span>
+                                <span className="label-text">Education</span>
                             </label>
                             <input
                                 type="text"
-                                placeholder='Enter your Country'
+                                placeholder='Enter your Education Background'
                                 className="input input-bordered"
-                                {...register("country", {
+                                {...register("education", {
                                     required: {
                                         value: true,
-                                        message: 'Country name is Required'
+                                        message: 'Education Background is Required'
                                     },
                                 })}
                             />
                             <label className="label p-0">
-                                {errors.country?.type === 'required' && <span className="label-text-alt text-error">{errors.country.message}</span>}
+                                {errors.education?.type === 'required' && <span className="label-text-alt text-error">{errors.education.message}</span>}
                             </label>
                         </div>
                     </div>
