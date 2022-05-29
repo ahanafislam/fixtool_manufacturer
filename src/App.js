@@ -21,6 +21,7 @@ import RequireUser from './Pages/Login/RequireUser';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
+import Blogs from './Pages/Blogs/Blogs';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       {/* Start Routing */}
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/blog" element={<Blogs/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>

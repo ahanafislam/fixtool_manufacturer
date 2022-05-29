@@ -23,7 +23,7 @@ const Header = () => {
                         </label>
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52">
                             <li><Link className='hover:text-secondary' to="/">Home</Link></li>
-                            <li><Link className='hover:text-secondary' to="/">Blog</Link></li>
+                            <li><Link className='hover:text-secondary' to="/blog">Blog</Link></li>
                             {
                                 user
                                 &&
@@ -37,7 +37,7 @@ const Header = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         <li><Link className='hover:text-secondary' to="/">Home</Link></li>
-                        <li><Link className='hover:text-secondary' to="/">Blog</Link></li>
+                        <li><Link className='hover:text-secondary' to="/blog">Blog</Link></li>
                         {
                             user
                             &&
