@@ -15,7 +15,7 @@ const ManageAllOrders = () => {
     let orderList =[];
 
     const { isLoading, error, data, refetch } = useQuery('allOrderList', async () =>{
-            const url = `http://localhost:5000/order`;
+            const url = `https://fixtool.herokuapp.com/order`;
             const options = {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -42,7 +42,7 @@ const ManageAllOrders = () => {
     const makeShipped = id => {
         setIsMaking(true)
 
-        fetch(`http://localhost:5000/order/status/${id}`, {
+        fetch(`https://fixtool.herokuapp.com/order/status/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

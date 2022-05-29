@@ -2,9 +2,9 @@ import React from 'react';
 
 const SecondQns = () => {
     return (
-        <div class="card mx-auto shadow-xl mt-6 bg-base-100">
+        <div className="card mx-auto shadow-xl mt-6 bg-base-100">
             <h2 className='text-center font-bold text-white bg-primary text-2xl justify-center p-1'>What are the different ways to manage a state in a React application?</h2>
-            <div class="card-body">
+            <div className="card-body">
                 <p>There are four main types of states we need to properly manage in our react apps:</p>
                 <ol className='list-disc'>
                     <li><span className='font-bold'>Local state:</span> It’s data that we manage in one or another component. In maximum cases, local state is managed in React by using useState.</li>

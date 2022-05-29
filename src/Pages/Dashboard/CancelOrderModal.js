@@ -6,7 +6,10 @@ const CancelOrderModal = ({deletingOrder, refetch, setDeletingOrder}) => {
     const {_id} = deletingOrder;
     const handleCancel = () => {
         fetch(`https://fixtool.herokuapp.com/order/${_id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {

@@ -2,9 +2,9 @@ import React from 'react';
 
 const FirstQns = () => {
     return (
-        <div class="card mx-auto shadow-xl mt-6 bg-base-100">
+        <div className="card mx-auto shadow-xl mt-6 bg-base-100">
             <h2 className='text-center font-bold text-white bg-primary text-2xl justify-center p-1'>How will you improve the performance of a React Application?</h2>
-            <div class="card-body">
+            <div className="card-body">
                 <p>Naturally, React uses many clever techniques to short down the number of costly DOM operations that are required to update UI. Even then, we can use some techniques to improve React performance. Below are some of the ways are shown.</p>
                 <ol className='list-disc'>
                     <li>Using Function components and React.PureComponent. Functional components prevent making class while reducing the overall size as it is better than class.</li>

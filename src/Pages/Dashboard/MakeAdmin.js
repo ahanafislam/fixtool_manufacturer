@@ -13,7 +13,7 @@ const MakeAdmin = () => {
     let userList =[];
 
     const { isLoading, error, data, refetch } = useQuery('userList', async () =>{
-            const url = `http://localhost:5000/user`;
+            const url = `https://fixtool.herokuapp.com/user`;
             const options = {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -40,7 +40,7 @@ const MakeAdmin = () => {
     const makeAdmin = email => {
         setIsMaking(true)
 
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://fixtool.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

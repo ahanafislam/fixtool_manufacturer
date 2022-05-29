@@ -5,7 +5,7 @@ import { CgDanger } from 'react-icons/cg';
 const DelateProductModal = ({deletingProduct, refetch, setDeletingProduct}) => {
     const {_id} = deletingProduct;
     const handleCancel = () => {
-        fetch(`http://localhost:5000/products/${_id}`, {
+        fetch(`https://fixtool.herokuapp.com/products/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

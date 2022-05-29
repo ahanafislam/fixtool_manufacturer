@@ -33,9 +33,9 @@ const FifthQns = () => {
     `
 
     return (
-        <div class="card mx-auto shadow-xl mt-6 bg-base-100">
+        <div className="card mx-auto shadow-xl mt-6 bg-base-100">
             <h2 className='text-center font-bold text-white bg-primary text-lg justify-center p-1'>You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</h2>
-            <div class="card-body">
+            <div className="card-body">
                 <p>For example we have an array name product,</p>
                 <SyntaxHighlighter className="font-semibold font-mono rounded-xl" language="javascript" style={nord}>
                     {productArray}
@@ -52,17 +52,17 @@ const FifthQns = () => {
                 </SyntaxHighlighter>
 
                 <p>Output</p>
-                <div class="mockup-code">
+                <div className="mockup-code">
                     <pre data-prefix="$"><code>{`{ name: 'Apple',price: 8, description: 'This is very sweet fruit' }`}</code></pre>
                 </div>
 
                 <p>Again call this function and console the result</p>
                 <SyntaxHighlighter className="font-semibold font-mono rounded-xl" language="javascript" style={nord}>
-                    {resultStr}
+                    {resultStr2}
                 </SyntaxHighlighter>
 
                 <p>Output</p>
-                <div class="mockup-code">
+                <div className="mockup-code">
                     <pre data-prefix="$"><code>Sorry nothing is found</code></pre>
                 </div>
             </div>
